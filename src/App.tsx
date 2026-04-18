@@ -339,10 +339,9 @@ const MainFooter = () => {
         <div className="pt-10 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="flex items-center gap-2">
             <img 
-              src="/logo-main.png" 
+              src="/logo-footer.png" 
               alt="EES Ltd Icon" 
               className="h-8 w-auto object-contain brightness-0 invert" 
-              referrerPolicy="no-referrer"
             />
             <span className="font-bold text-lg tracking-tighter text-white uppercase">ECO-ENGINEERING SOLUTIONS LTD</span>
           </div>
@@ -367,7 +366,6 @@ const MainFooter = () => {
 // --- Shared Components ---
 
 const HeroBackground = ({ src, alt }: { src: string, alt: string }) => {
-  const [isLoaded, setIsLoaded] = useState(false);
   return (
     <>
       <motion.img 
@@ -375,9 +373,8 @@ const HeroBackground = ({ src, alt }: { src: string, alt: string }) => {
         alt={alt} 
         className="absolute inset-0 w-full h-full object-cover"
         referrerPolicy="no-referrer"
-        onLoad={() => setIsLoaded(true)}
         initial={{ opacity: 0 }}
-        animate={{ opacity: isLoaded ? 1 : 0 }}
+        animate={{ opacity: 1 }}
         transition={{ duration: 1.2, ease: "easeOut" }}
         // @ts-ignore - fetchPriority is a valid attribute but might not be in types
         fetchPriority="high"
