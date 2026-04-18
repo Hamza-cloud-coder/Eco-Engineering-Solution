@@ -121,7 +121,7 @@ const Navbar = ({ toggleMenu }: { toggleMenu: () => void }) => {
     >
       <Link to="/" className="flex items-center gap-2">
         <img 
-          src="/Artboard 1 copy@4x.png" 
+          src="/logo-main.png" 
           alt="EES Ltd Icon" 
           className="h-8 w-auto object-contain" 
           referrerPolicy="no-referrer"
@@ -210,7 +210,7 @@ const MenuOverlay = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void
         >
           <Link to="/" onClick={onClose} className="absolute top-6 left-6 flex items-center gap-2">
             <img 
-              src="/Artboard 1 copy@4x.png" 
+              src="/logo-main.png" 
               alt="EES Ltd Icon" 
               className="h-8 w-auto object-contain" 
               referrerPolicy="no-referrer"
@@ -339,7 +339,7 @@ const MainFooter = () => {
         <div className="pt-10 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="flex items-center gap-2">
             <img 
-              src="/Artboard 1 copy@4x.png" 
+              src="/logo-main.png" 
               alt="EES Ltd Icon" 
               className="h-8 w-auto object-contain brightness-0 invert" 
               referrerPolicy="no-referrer"
@@ -1167,47 +1167,67 @@ const Testimonials = () => {
   );
 };
 
+import emailjs from '@emailjs/browser';
+import { useState, useRef } from 'react';
+// ... other imports
+
 const ContactForm = () => {
+  const form = useRef<HTMLFormElement>(null);
+  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
+
+  const sendEmail = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!form.current) return;
+    setStatus('sending');
+
+    emailjs
+      .sendForm(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        form.current,
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      )
+      .then(
+        () => {
+          setStatus('success');
+          form.current?.reset();
+        },
+        (error) => {
+          console.error(error);
+          setStatus('error');
+        }
+      );
+  };
+
   return (
     <section className="py-16 md:py-24 px-6 bg-white" data-aos="fade-up">
       <div className="max-w-7xl mx-auto bg-[var(--primary-blue)] rounded-[2rem] md:rounded-[2.5rem] p-8 md:p-16 text-white" data-aos="fade-up" data-aos-delay="100">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16">
-          <div>
-            <div className="flex items-center gap-2 mb-8 md:mb-10">
-              <div className="w-1.5 h-1.5 bg-[var(--primary-orange)] rounded-full"></div>
-              <span className="text-[11px] font-bold uppercase tracking-widest text-white/60">We're explorers</span>
-            </div>
-            <h2 className="text-3xl md:text-[42px] font-medium tracking-tight mb-8 md:mb-10 leading-tight text-white">Let's build the future together</h2>
-            
-            <div className="space-y-8">
-              <div>
-                <p className="text-[11px] font-bold uppercase tracking-widest text-white/40 mb-4">Our Testimonials:</p>
-                <div className="flex gap-4">
-                  <div className="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center"><Clapperboard size={14} /></div>
-                  <div className="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center"><ArrowDown size={14} /></div>
-                </div>
-              </div>
-            </div>
-          </div>
+          {/* ... (left side remains unchanged) ... */}
+          
           <div>
             <div className="mb-8 md:mb-10">
               <h3 className="text-xl md:text-2xl font-medium mb-2 text-white">Ready to take next step with us?</h3>
             </div>
-            <form className="space-y-6 md:space-y-8">
+            <form ref={form} onSubmit={sendEmail} className="space-y-6 md:space-y-8">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-                <div><label className="text-[10px] font-bold uppercase tracking-widest text-white/40 mb-2 block">Name</label><input type="text" placeholder="Evan" className="w-full border-b border-white/20 py-3 text-sm outline-none focus:border-white transition-all bg-transparent text-white placeholder:text-white/20" /></div>
-                <div><label className="text-[10px] font-bold uppercase tracking-widest text-white/40 mb-2 block">Company</label><input type="text" placeholder="Microsoft" className="w-full border-b border-white/20 py-3 text-sm outline-none focus:border-white transition-all bg-transparent text-white placeholder:text-white/20" /></div>
+                <div><label className="text-[10px] font-bold uppercase tracking-widest text-white/40 mb-2 block">Name</label><input type="text" name="user_name" placeholder="Evan" className="w-full border-b border-white/20 py-3 text-sm outline-none focus:border-white transition-all bg-transparent text-white placeholder:text-white/20" required /></div>
+                <div><label className="text-[10px] font-bold uppercase tracking-widest text-white/40 mb-2 block">Company</label><input type="text" name="user_company" placeholder="Microsoft" className="w-full border-b border-white/20 py-3 text-sm outline-none focus:border-white transition-all bg-transparent text-white placeholder:text-white/20" /></div>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-                <div><label className="text-[10px] font-bold uppercase tracking-widest text-white/40 mb-2 block">Your Email</label><input type="email" placeholder="evan@microsoft.com" className="w-full border-b border-white/20 py-3 text-sm outline-none focus:border-white transition-all bg-transparent text-white placeholder:text-white/20" /></div>
-                <div><label className="text-[10px] font-bold uppercase tracking-widest text-white/40 mb-2 block">Your Phone</label><input type="text" placeholder="Your number phone" className="w-full border-b border-white/20 py-3 text-sm outline-none focus:border-white transition-all bg-transparent text-white placeholder:text-white/20" /></div>
+                <div><label className="text-[10px] font-bold uppercase tracking-widest text-white/40 mb-2 block">Your Email</label><input type="email" name="user_email" placeholder="evan@microsoft.com" className="w-full border-b border-white/20 py-3 text-sm outline-none focus:border-white transition-all bg-transparent text-white placeholder:text-white/20" required /></div>
+                <div><label className="text-[10px] font-bold uppercase tracking-widest text-white/40 mb-2 block">Your Phone</label><input type="text" name="user_phone" placeholder="Your number phone" className="w-full border-b border-white/20 py-3 text-sm outline-none focus:border-white transition-all bg-transparent text-white placeholder:text-white/20" /></div>
               </div>
               
               <div>
                 <label className="text-[10px] font-bold uppercase tracking-widest text-white/40 mb-4 md:mb-5 block">What services are you interested in?</label>
                 <div className="flex flex-wrap gap-2 md:gap-2.5">
                   {["Telecom Services", "ICT Solutions", "Power & Electrical", "Environmental Solutions", "Biomedical Equipment"].map((tag, i) => (
-                    <span key={i} className="px-4 md:px-5 py-2 rounded-full border border-white/20 text-[10px] md:text-[11px] font-medium cursor-pointer transition-all hover:bg-[var(--primary-orange)] hover:text-white bg-transparent text-white">{tag}</span>
+                    <label key={i} className="cursor-pointer">
+                      <input type="checkbox" name="services" value={tag} className="sr-only peer" />
+                      <span className="px-4 md:px-5 py-2 rounded-full border border-white/20 text-[10px] md:text-[11px] font-medium transition-all peer-checked:bg-[var(--primary-orange)] peer-checked:text-white hover:bg-[var(--primary-orange)] hover:text-white bg-transparent text-white">{tag}</span>
+                    </label>
                   ))}
                 </div>
               </div>
@@ -1215,26 +1235,24 @@ const ContactForm = () => {
               <div>
                 <label className="text-[10px] font-bold uppercase tracking-widest text-white/40 mb-4 md:mb-5 block">Project Timeline</label>
                 <div className="flex gap-2 md:gap-3">
-                  {["1-3 Months", "3-6 Months", "6-12 Months", "12+ Months"].map((budget, i) => (
-                    <div key={i} className="flex-1 text-center py-2 rounded-full border border-white/20 text-[10px] md:text-[11px] font-medium cursor-pointer transition-all hover:bg-[var(--primary-orange)] hover:text-white bg-transparent text-white">{budget}</div>
+                  {["1-3 Months", "3-6 Months", "6-12 Months", "12+ Months"].map((time, i) => (
+                      <label key={i} className="flex-1 cursor-pointer">
+                        <input type="radio" name="timeline" value={time} className="sr-only peer" />
+                        <div className="text-center py-2 rounded-full border border-white/20 text-[10px] md:text-[11px] font-medium transition-all peer-checked:bg-[var(--primary-orange)] peer-checked:text-white hover:bg-[var(--primary-orange)] hover:text-white bg-transparent text-white">{time}</div>
+                      </label>
                   ))}
                 </div>
               </div>
 
               <div>
                 <label className="text-[10px] font-bold uppercase tracking-widest text-white/40 mb-3 block">Tell us about your project.</label>
-                <textarea placeholder="Write something concise..." rows={4} className="w-full border-b border-white/20 py-3 text-sm outline-none focus:border-white transition-all bg-transparent text-white placeholder:text-white/20"></textarea>
+                <textarea name="message" placeholder="Write something concise..." rows={4} className="w-full border-b border-white/20 py-3 text-sm outline-none focus:border-white transition-all bg-transparent text-white placeholder:text-white/20" required></textarea>
               </div>
 
-              <div className="bg-white/5 p-3.5 rounded-xl border border-white/10 flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <input type="checkbox" id="robot" className="w-4 h-4 accent-[var(--primary-orange)]" />
-                  <label htmlFor="robot" className="text-[13px] font-medium text-white">I'm not a robot</label>
-                </div>
-                <img src="https://www.gstatic.com/recaptcha/api2/logo_48.png" alt="reCAPTCHA" className="h-6 brightness-0 invert" />
-              </div>
-
-              <button type="submit" className="bg-[var(--primary-orange)] text-white w-full py-3 rounded-full font-medium text-base hover:bg-[var(--primary-orange)]/90 transition-all">Submit Request</button>
+              <button type="submit" disabled={status === 'sending'} className="bg-[var(--primary-orange)] text-white w-full py-3 rounded-full font-medium text-base hover:bg-[var(--primary-orange)]/90 transition-all disabled:opacity-50">
+                {status === 'sending' ? 'Sending...' : status === 'success' ? 'Message Sent!' : 'Submit Request'}
+              </button>
+              {status === 'error' && <p className="text-red-400 text-sm">Failed to send message. Please try again.</p>}
             </form>
           </div>
         </div>
