@@ -1,9 +1,10 @@
-import { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, FormEvent } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useLocation, useParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Lenis from 'lenis';
+import emailjs from '@emailjs/browser';
 import { 
   Menu, 
   X, 
@@ -368,16 +369,10 @@ const MainFooter = () => {
 const HeroBackground = ({ src, alt }: { src: string, alt: string }) => {
   return (
     <>
-      <motion.img 
+      <img 
         src={src} 
         alt={alt} 
-        className="absolute inset-0 w-full h-full object-cover"
-        referrerPolicy="no-referrer"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1.2, ease: "easeOut" }}
-        // @ts-ignore - fetchPriority is a valid attribute but might not be in types
-        fetchPriority="high"
+        className="absolute inset-0 w-full h-full object-cover opacity-100"
         loading="eager"
       />
       <div className="absolute inset-0 bg-[var(--primary-blue)]/90"></div>
@@ -544,24 +539,26 @@ const WhoWeAre = () => {
             <div className="relative rounded-[1.5rem] overflow-hidden aspect-video bg-gray-800 group cursor-pointer">
               {/* Ambient Blur Background for vertical videos */}
               <video 
-                src="/0411.mp4" 
                 className="absolute inset-0 w-full h-full object-cover blur-2xl opacity-40 scale-110" 
                 autoPlay 
                 loop 
                 muted 
                 playsInline
                 preload="auto"
-              />
+              >
+                <source src="/0411.mp4" type="video/mp4" />
+              </video>
               {/* Main Video */}
               <video 
-                src="/0411.mp4" 
                 className="relative z-10 w-full h-full object-contain" 
                 autoPlay 
                 loop 
                 muted 
                 playsInline
                 preload="auto"
-              />
+              >
+                <source src="/0411.mp4" type="video/mp4" />
+              </video>
               <div className="absolute inset-0 z-20 bg-black/10 group-hover:bg-black/20 transition-all"></div>
               <div className="absolute bottom-4 left-6 z-20 text-white text-sm font-medium">
                 Eco-Engineering Solutions Ltd
@@ -1164,15 +1161,12 @@ const Testimonials = () => {
   );
 };
 
-import emailjs from '@emailjs/browser';
-import { useState, useRef } from 'react';
-// ... other imports
 
 const ContactForm = () => {
   const form = useRef<HTMLFormElement>(null);
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
 
-  const sendEmail = (e: React.FormEvent) => {
+  const sendEmail = (e: FormEvent) => {
     e.preventDefault();
 
     if (!form.current) return;
@@ -1180,10 +1174,10 @@ const ContactForm = () => {
 
     emailjs
       .sendForm(
-        import.meta.env.VITE_EMAILJS_SERVICE_ID,
-        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        (import.meta as any).env.VITE_EMAILJS_SERVICE_ID,
+        (import.meta as any).env.VITE_EMAILJS_TEMPLATE_ID,
         form.current,
-        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+        (import.meta as any).env.VITE_EMAILJS_PUBLIC_KEY
       )
       .then(
         () => {
@@ -2520,6 +2514,11 @@ export default function App() {
       anchorPlacement: 'top-bottom',
     });
 
+    // Force a refresh after a short delay
+    const timeout = setTimeout(() => {
+      AOS.refresh();
+    }, 500);
+
     // Handle scroll progress
     const handleScroll = () => {
       const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
@@ -2529,7 +2528,10 @@ export default function App() {
     };
 
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      clearTimeout(timeout);
+    };
   }, []);
 
   return (
