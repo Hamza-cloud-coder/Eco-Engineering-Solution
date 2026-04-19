@@ -1,3 +1,0 @@
-# This file ensures the public directory is tracked.
-# You can upload your images, videos, and logos here.
-

@@ -226,15 +226,7 @@ const MenuOverlay = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void
           </button>
 
           <div className="flex-1 flex flex-col justify-center items-center md:items-start md:pl-20">
-            <div className="mb-8 hidden md:block">
-              <img 
-                src="/f10.jpeg" 
-                alt="Book a call" 
-                className="rounded-2xl shadow-2xl mb-4"
-                referrerPolicy="no-referrer"
-              />
-              <p className="font-medium text-lg">Book a call</p>
-            </div>
+            {/* Removed image as requested */}
           </div>
 
           <div className="flex-1 grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 pt-20 md:pt-0">
@@ -384,14 +376,14 @@ const ProjectDetailPage = () => {
   const { id } = useParams();
   
   const projectData: Record<string, any> = {
-    "01": { title: "Fibre Works", desc: "On-site fibre cable inspection and pulling operations, carefully handling and routing fibre reels to ensure signal integrity during installation.", client: "[Client Name]", date: "2024", cat: "Telecom Services", assoc: "Eco-Engineering Solutions Ltd", loc: "Kanisani Road, Dar es Salaam", images: ["/f1.png", "/f2.png"] },
-    "02": { title: "Solar Energy Storage Installation", desc: "Installation of Freedom Won Lite LiFePO4 battery banks paired with Victron inverters and charge controllers, delivering a complete off-grid solar energy storage solution.", client: "[Client Name]", date: "2024", cat: "Power & Electrical Services", assoc: "Eco-Engineering Solutions Ltd", loc: "Dar es Salaam", images: ["/f1.png", "/f2.png"] },
-    "03": { title: "Overhead Pole Cable Intallation", desc: "Skilled technician climbing a utility pole to perform overhead cable installation, extending network connectivity to new areas of the city.", client: "[Client Name]", date: "2024", cat: "Telecom Services", assoc: "Eco-Engineering Solutions Ltd", loc: "Dar es Salaam", images: ["/f1.png", "/f2.png"] },
-    "04": { title: "CT-Scan Repair", desc: "Diagnosis and full repair of a CT-Scan unit, restoring critical imaging capability at a regional hospital.", client: "Regional Hospital", date: "2024", cat: "Biomedical Equipment Services", assoc: "Eco-Engineering Solutions Ltd", loc: "Dodoma", images: ["/f1.png", "/f2.png"] },
-    "05": { title: "Telecom Tower Deployment", desc: "Installation and commissioning of telecom towers to extend mobile and data network coverage across Tanzania.", client: "[Client Name]", date: "2024", cat: "Telecom Services", assoc: "Eco-Engineering Solutions Ltd", loc: "Tanzania", images: ["/f1.png", "/f2.png"] },
-    "06": { title: "Telecom Equipment Room Setup", desc: "Full rack installation and structured cabling of a telecom equipment room, integrating switches, routers, and patch panels for reliable network operation.", client: "[Client Name]", date: "2024", cat: "ICT Solutions", assoc: "Eco-Engineering Solutions Ltd", loc: "Tanzania", images: ["/f1.png", "/f2.png"] },
-    "07": { title: "Power Supply Unit Repair", desc: "Component-level diagnosis and repair of a power supply board, replacing faulty inductors and capacitors to restore full functionality.", client: "[Client Name]", date: "2024", cat: "Power & Electrical Services", assoc: "Eco-Engineering Solutions Ltd", loc: "Dar es Salaam", images: ["/f1.png", "/f2.png"] },
-    "08": { title: "E-waste Management", desc: "Responsible collection and processing of end-of-life electronic components and circuit boards, reducing environmental hazards through proper e-waste disposal and recycling.", client: "[Client Name]", date: "2024", cat: "Environmental Solutions", assoc: "Eco-Engineering Solutions Ltd", loc: "Tanzania", images: ["/f1.png", "/f2.png"] }
+    "01": { title: "Fibre Works", desc: "On-site fibre cable inspection and pulling operations, carefully handling and routing fibre reels to ensure signal integrity during installation.", client: "[Client Name]", date: "2024", cat: "Telecom Services", assoc: "Eco-Engineering Solutions Ltd", loc: "Kanisani Road, Dar es Salaam", images: ["/fu11.png", "/fu11.png"] },
+    "02": { title: "Solar Energy Storage Installation", desc: "Installation of Freedom Won Lite LiFePO4 battery banks paired with Victron inverters and charge controllers, delivering a complete off-grid solar energy storage solution.", client: "[Client Name]", date: "2024", cat: "Power & Electrical Services", assoc: "Eco-Engineering Solutions Ltd", loc: "Dar es Salaam", images: ["/fu13.webp", "/fu13.webp"] },
+    "03": { title: "Overhead Pole Cable Intallation", desc: "Skilled technician climbing a utility pole to perform overhead cable installation, extending network connectivity to new areas of the city.", client: "[Client Name]", date: "2024", cat: "Telecom Services", assoc: "Eco-Engineering Solutions Ltd", loc: "Dar es Salaam", images: ["/fu1.png", "/fu1.png"] },
+    "04": { title: "CT-Scan Repair", desc: "Diagnosis and full repair of a CT-Scan unit, restoring critical imaging capability at a regional hospital.", client: "Regional Hospital", date: "2024", cat: "Biomedical Equipment Services", assoc: "Eco-Engineering Solutions Ltd", loc: "Dodoma", images: ["/fu12.jpg", "/fu12.jpg"] },
+    "05": { title: "Telecom Tower Deployment", desc: "Installation and commissioning of telecom towers to extend mobile and data network coverage across Tanzania.", client: "[Client Name]", date: "2024", cat: "Telecom Services", assoc: "Eco-Engineering Solutions Ltd", loc: "Tanzania", images: ["/fu15.jfif", "/fu15.jfif"] },
+    "06": { title: "Telecom Equipment Room Setup", desc: "Full rack installation and structured cabling of a telecom equipment room, integrating switches, routers, and patch panels for reliable network operation.", client: "[Client Name]", date: "2024", cat: "ICT Solutions", assoc: "Eco-Engineering Solutions Ltd", loc: "Tanzania", images: ["/fu14.webp", "/fu14.webp"] },
+    "07": { title: "Power Supply Unit Repair", desc: "Component-level diagnosis and repair of a power supply board, replacing faulty inductors and capacitors to restore full functionality.", client: "[Client Name]", date: "2024", cat: "Power & Electrical Services", assoc: "Eco-Engineering Solutions Ltd", loc: "Dar es Salaam", images: ["/BACKUP1.jpeg", "/BACKUP1.jpeg"] },
+    "08": { title: "E-waste Management", desc: "Responsible collection and processing of end-of-life electronic components and circuit boards, reducing environmental hazards through proper e-waste disposal and recycling.", client: "[Client Name]", date: "2024", cat: "Environmental Solutions", assoc: "Eco-Engineering Solutions Ltd", loc: "Tanzania", images: ["/e1.jpg", "/e1.jpg"] }
   };
   
   const project = projectData[id as string] || projectData["01"];
@@ -624,38 +616,38 @@ const FeaturedWorks = () => {
   const projects = [
     {
       id: "01",
-      title: "Network Expansion",
-      location: "Telecom Infrastructure, TZ",
-      desc: "Comprehensive rollout of 4G/5G telecommunications towers across rural Tanzania, improving connectivity for over 2 million people.",
-      tags: ["Telecom", "Infrastructure", "Engineering"],
-      image: "/Ubuntu-Towers-jpg-webp.webp",
+      title: "Fiber Works",
+      location: "Tanzania",
+      desc: "On-site fibre cable inspection and pulling operations, carefully handling and routing fibre reels to ensure signal integrity during installation.",
+      tags: ["Telecom", "Fiber Optic"],
+      image: "/fu11.png",
       reverse: false
     },
     {
       id: "02",
-      title: "Fiber Optic Network Deployment",
-      location: "Power Systems, TZ",
-      desc: "fiber optic infrastructure project delivering high-speed connectivity across Dar es Salaam. Full underground and overhead cable installation, fusion splicing and ODF terminations completed to the highest industry standards",
-      tags: ["Telecom", "Fiber Optic"],
-      image: "/f5.png",
+      title: "Solar Energy Storage Installation",
+      location: "Tanzania",
+      desc: "Installation of Freedom Won Lite LiFePO4 battery banks paired with Victron inverters and charge controllers, delivering a complete off-grid solar energy storage solution.",
+      tags: ["Power", "Renewable"],
+      image: "/fu13.webp",
       reverse: true
     },
     {
       id: "03",
-      title: "Data Center Modernization",
-      location: "ICT Solutions, TZ",
-      desc: "End-to-end ICT infrastructure upgrade for government agencies, implementing secure cloud storage and high-speed fiber connectivity.",
-      tags: ["ICT", "Networking", "Security"],
-      image: "/20250722_110521.jpg",
+      title: "Overhead Pole Cable Installation",
+      location: "Tanzania",
+      desc: "Skilled technician climbing a utility pole to perform overhead cable installation, extending network connectivity to new areas of the city.",
+      tags: ["Telecom", "Infra"],
+      image: "/fu1.png",
       reverse: false
     },
     {
       id: "04",
-      title: "Biomedical Equipment Repair & Restoration",
-      location: "Environmental, TZ",
-      desc: "Troubleshooting, component replacement and full restoration of malfunctioning biomedical systems for a regional healthcare facility in Tanzania.",
-      tags: ["Biomedical", "Healthcare"],
-      image: "/20250517_111615.jpg",
+      title: "CT-Scan Repair & Maintenance",
+      location: "Tanzania",
+      desc: "Diagnosis and full repair of a CT-Scan unit, restoring critical imaging capability at a regional hospital.",
+      tags: ["Biomedical", "Repair"],
+      image: "/fu12.jpg",
       reverse: true
     }
   ];
@@ -872,16 +864,41 @@ const FeaturedWorks = () => {
           }
         }
         .project-image {
-          border-radius: 14px;
+          background: #f5f5f7;
+          border-radius: 24px;
+          padding: 20px;
           overflow: hidden;
           aspect-ratio: 16/10;
           width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border: 1px solid rgba(0,0,0,0.05);
+          box-shadow: 0 20px 40px -10px rgba(0,0,0,0.1), 0 10px 20px -5px rgba(0,0,0,0.05);
+          transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+          transform: translateY(0);
+        }
+        @media (min-width: 768px) {
+          .project-image {
+            padding: 32px;
+            border-radius: 32px;
+          }
+        }
+        .project-row:hover .project-image {
+          transform: translateY(-10px);
+          box-shadow: 0 30px 60px -12px rgba(0,0,0,0.15), 0 18px 36px -18px rgba(0,0,0,0.1);
+          background: #ffffff;
         }
         .project-image img {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          border-radius: 14px;
+          border-radius: 12px;
+          box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+          transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .project-row:hover .project-image img {
+          transform: scale(1.02);
         }
         .all-projects-wrap {
           text-align: center;
@@ -1438,31 +1455,45 @@ const FeaturedProjectsCarousel = () => {
   const projects = [
     {
       id: "01",
-      title: "Fiber Optic Network Deployment",
+      title: "Fiber Works",
       year: "2024",
-      tags: ["Telecom", "Fiber Optic"],
-      image: "/f17.png"
+      tags: ["Telecom", "Infra"],
+      image: "/fu11.png"
     },
     {
       id: "02",
-      title: "Medical Equipment Installation",
+      title: "Solar Energy Storage Installation",
       year: "2024",
-      tags: ["Biomedical", "Healthcare"],
-      image: "/lab1.jpeg"
+      tags: ["Power", "Renewable"],
+      image: "/fu13.webp"
     },
     {
       id: "03",
-      title: "E-Waste Collection Program",
+      title: "Overhead Pole Cable Installation",
       year: "2024",
-      tags: ["Environmental", "Recycling"],
-      image: "/e1.jpg"
+      tags: ["Telecom", "Splicing"],
+      image: "/fu1.png"
     },
     {
       id: "04",
-      title: "Generator Installation & Commissioning",
+      title: "CT-Scan Repair & Maintenance",
+      year: "2023",
+      tags: ["Biomedical", "Repair"],
+      image: "/fu12.jpg"
+    },
+    {
+      id: "05",
+      title: "Telecom Tower Deployment",
       year: "2024",
-      tags: ["Power", "Electrical"],
-      image: "/g1.jfif"
+      tags: ["Telecom", "Infrastructure"],
+      image: "/fu15.jfif"
+    },
+    {
+      id: "06",
+      title: "Telecom Equipment Room Setup",
+      year: "2024",
+      tags: ["Telecom", "ICT"],
+      image: "/fu14.webp"
     }
   ];
 
@@ -1499,8 +1530,8 @@ const FeaturedProjectsCarousel = () => {
         >
           {projects.map((project, i) => (
             <div key={i} className="min-w-[85vw] md:min-w-[800px] snap-start" data-aos="fade-up" data-aos-delay={i * 100}>
-              <div className="rounded-[2rem] md:rounded-[3rem] overflow-hidden aspect-[16/10] bg-[var(--primary-blue)]/5 mb-6 md:mb-8 group cursor-pointer shadow-sm">
-                <img src={project.image} alt={project.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+            <div className="rounded-[2rem] md:rounded-[3rem] overflow-hidden aspect-[16/10] bg-[#f5f5f5] p-6 md:p-12 mb-6 md:mb-8 group cursor-pointer shadow-xl border border-gray-200/50">
+                <img src={project.image} alt={project.title} className="w-full h-full object-cover rounded-2xl md:rounded-[2rem] group-hover:scale-105 transition-transform duration-700 shadow-2xl" />
               </div>
               <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 md:gap-6 px-2">
                 <h3 className="text-2xl md:text-[36px] font-medium text-white">
@@ -1583,7 +1614,7 @@ const ExpertiseSection = () => {
             <div className="flex items-center gap-2 text-[13px] text-[var(--primary-orange)] font-medium uppercase tracking-widest mb-8 md:mb-12">
               <span className="text-[var(--primary-orange)]">•</span> Experise
             </div>
-            <h2 className="text-3xl sm:text-4xl md:text-[64px] font-medium leading-[1] mb-8 md:mb-10 text-[var(--primary-blue)]">We solve real engineering problems</h2>
+            <h2 className="text-3xl sm:text-4xl md:text-[52px] font-medium leading-[1.1] mb-8 md:mb-10 text-[var(--primary-blue)] max-w-xl">We solve real engineering problems</h2>
             <p className="text-[var(--primary-blue)]/60 text-base md:text-lg leading-relaxed mb-8 md:mb-12 max-w-lg font-normal">
               From fiber optic networks to biomedical equipment — we deliver complete engineering solutions across Tanzania.
             </p>
@@ -1853,7 +1884,7 @@ const AboutStudio = () => {
       <div className="max-w-7xl mx-auto">
         <div className="bg-[var(--primary-blue)]/5 rounded-[2rem] md:rounded-[3rem] p-8 md:p-20 grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16 items-center" data-aos="fade-up" data-aos-delay="100">
           <div>
-            <h2 className="text-3xl sm:text-4xl md:text-[54px] font-medium leading-[1.1] mb-8 md:mb-10 text-[var(--primary-blue)]">We are Tanzania's premier engineering solutions firm</h2>
+            <h2 className="text-3xl sm:text-4xl md:text-[42px] font-medium leading-[1.2] mb-8 md:mb-10 text-[var(--primary-blue)] max-w-xl">We are Tanzania's premier engineering solutions firm</h2>
             <p className="text-[var(--primary-blue)]/60 text-base md:text-lg leading-relaxed mb-8 md:mb-12 font-normal">
               ECO-ENGINEERING SOLUTIONS LTD is a dynamic firm specializing in providing comprehensive Environmental, Electrical, Telecom and ICT solutions. Our commitment to excellence, reliability, and technological expertise ensures cutting-edge solutions that empower businesses and communities alike.
             </p>
@@ -1983,7 +2014,7 @@ const OurMission = () => {
           <div className="flex items-center gap-2 text-[14px] text-[var(--primary-orange)] font-normal uppercase tracking-widest">
             • Our Mission
           </div>
-          <h2 className="text-2xl sm:text-3xl md:text-[48px] font-medium leading-tight max-w-2xl text-left md:text-right text-[var(--primary-blue)]">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-medium leading-tight max-w-2xl text-left md:text-right text-[var(--primary-blue)]">
             To deliver engineering solutions that enhance connectivity, efficiency and safety.
           </h2>
         </div>
@@ -2110,9 +2141,9 @@ const ProjectsHero = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="text-3xl sm:text-5xl md:text-[64px] font-medium leading-[1.1] mb-8 md:mb-12 text-white"
+            className="text-3xl sm:text-5xl md:text-[54px] font-medium leading-[1.1] mb-8 md:mb-12 text-white max-w-4xl mx-auto"
           >
-            Good engineering looks simple, but great engineering solves real problems.
+            Good engineering looks simple, <br className="hidden md:block" />but great engineering solves real problems.
           </motion.h1>
           
           <motion.div
@@ -2139,14 +2170,14 @@ const ProjectsGrid = () => {
   const filters = ["All", "Telecom", "ICT", "Power", "Environmental", "Biomedical"];
   
   const projects = [
-    { id: "01", title: "Fiber Works", location: "Tanzania", tags: ["Telecom"], image: "/f15.png", category: "Telecom" },
-    { id: "02", title: "Solar Energy Storage Installation", location: "Tanzania", tags: ["Power"], image: "/f16.png", category: "Power" },
-    { id: "03", title: "Overhead Pole Cable Intallation", location: "Tanzania", tags: ["Telecom"], image: "/lab3.jpeg", category: "Telecom" },
-    { id: "04", title: "CT-Scan Repair", location: "Tanzania", tags: ["Biomedical"], image: "/g1.jfif", category: "Biomedical" },
-    { id: "05", title: "Telecom Tower Deployment", location: "Tanzania", tags: ["Telecom"], image: "/e1.jpg", category: "Telecom" },
-    { id: "06", title: "Telecom Equipment Room Setup", location: "Tanzania", tags: ["Telecom"], image: "/AC-2.jpeg", category: "Telecom" },
-    { id: "07", title: "Power Supply Unit Repair", location: "Tanzania", tags: ["Power"], image: "/f15.png", category: "Power" },
-    { id: "08", title: "E-waste Management", location: "Tanzania", tags: ["Environmental"], image: "/f16.png", category: "Environmental" }
+    { id: "01", title: "Fiber Works", location: "Tanzania", tags: ["Telecom"], image: "/fu11.png", category: "Telecom" },
+    { id: "02", title: "Solar Energy Storage Installation", location: "Tanzania", tags: ["Power"], image: "/fu13.webp", category: "Power" },
+    { id: "03", title: "Overhead Pole Cable Installation", location: "Tanzania", tags: ["Telecom"], image: "/fu1.png", category: "Telecom" },
+    { id: "04", title: "CT-Scan Repair & Maintenance", location: "Tanzania", tags: ["Biomedical"], image: "/fu12.jpg", category: "Biomedical" },
+    { id: "05", title: "Telecom Tower Deployment", location: "Tanzania", tags: ["Telecom"], image: "/fu15.jfif", category: "Telecom" },
+    { id: "06", title: "Telecom Equipment Room Setup", location: "Tanzania", tags: ["Telecom"], image: "/fu14.webp", category: "Telecom" },
+    { id: "07", title: "Power Supply Unit Repair", location: "Tanzania", tags: ["Power"], image: "/BACKUP1.jpeg", category: "Power" },
+    { id: "08", title: "E-waste Management", location: "Tanzania", tags: ["Environmental"], image: "/e1.jpg", category: "Environmental" }
   ];
 
   const filteredProjects = activeFilter === "All" 
@@ -2304,8 +2335,8 @@ const ScheduleCall = () => {
             <div className="flex items-center gap-4 mb-8">
               <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-[var(--primary-blue)] flex items-center justify-center text-white font-bold text-lg md:text-xl">E</div>
               <div>
-                <h3 className="font-bold text-base md:text-lg text-[var(--primary-blue)]">Eloqwnt Team</h3>
-                <p className="text-[var(--primary-blue)]/50 text-xs md:text-sm">30 mins w/ Eloqwnt</p>
+                <h3 className="font-bold text-base md:text-lg text-[var(--primary-blue)]">Eco-engineering Solution Team</h3>
+                <p className="text-[var(--primary-blue)]/50 text-xs md:text-sm">30 mins w/ EES Ltd</p>
               </div>
             </div>
 
@@ -2405,6 +2436,7 @@ const ServicesPage = () => (
     <ServicesHero />
     <CoreOfferings />
     <FeaturedProjectsCarousel />
+    <LogoTicker />
     <TrustStrip />
     <ExpertiseSection />
     <StatsSection />
@@ -2442,8 +2474,6 @@ const ProjectsPage = () => (
     <ProjectsHero />
     <TrustStrip />
     <ProjectsGrid />
-    <ExpertiseSection />
-    <StatsSection />
     <ContactForm />
   </>
 );
