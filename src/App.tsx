@@ -1195,12 +1195,22 @@ const ContactForm = () => {
     if (!form.current) return;
     setStatus('sending');
 
+    const serviceId = (import.meta as any).env.VITE_EMAILJS_SERVICE_ID;
+    const templateId = (import.meta as any).env.VITE_EMAILJS_TEMPLATE_ID;
+    const publicKey = (import.meta as any).env.VITE_EMAILJS_PUBLIC_KEY;
+
+    if (!serviceId || !templateId || !publicKey) {
+      console.error('EmailJS configuration missing');
+      setStatus('error');
+      return;
+    }
+
     emailjs
       .sendForm(
-        (import.meta as any).env.VITE_EMAILJS_SERVICE_ID,
-        (import.meta as any).env.VITE_EMAILJS_TEMPLATE_ID,
+        serviceId,
+        templateId,
         form.current,
-        (import.meta as any).env.VITE_EMAILJS_PUBLIC_KEY
+        publicKey
       )
       .then(
         () => {
@@ -1208,7 +1218,7 @@ const ContactForm = () => {
           form.current?.reset();
         },
         (error) => {
-          console.error(error);
+          console.error('EmailJS error:', error);
           setStatus('error');
         }
       );
@@ -2320,8 +2330,47 @@ const ContactsHero = () => {
 const ScheduleCall = () => {
   const [selectedDate, setSelectedDate] = useState(23);
   const [selectedTime, setSelectedTime] = useState("11:30am");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
 
   const times = ["11:30am", "12:00pm", "12:30pm", "6:00am", "6:30am", "7:00am", "7:30am", "4:00pm"];
+
+  const handleConfirm = () => {
+    if (!name || !email) {
+      alert("Please enter your name and email.");
+      return;
+    }
+
+    setStatus('sending');
+
+    const templateParams = {
+      name: name,
+      email: email,
+      title: "New Appointment Request",
+      time: `March ${selectedDate}, 2026 at ${selectedTime}`,
+      message: `Appointment request on March ${selectedDate}, 2026 at ${selectedTime}.`,
+    };
+
+    emailjs
+      .send(
+        (import.meta as any).env.VITE_EMAILJS_SERVICE_ID,
+        (import.meta as any).env.VITE_EMAILJS_TEMPLATE_ID_APPOINTMENT,
+        templateParams,
+        (import.meta as any).env.VITE_EMAILJS_PUBLIC_KEY
+      )
+      .then(
+        () => {
+          setStatus('success');
+          alert('Appointment scheduled successfully!');
+        },
+        (error) => {
+          console.error('EmailJS error:', error);
+          setStatus('error');
+          alert('Failed to schedule appointment. Please try again.');
+        }
+      );
+  };
 
   return (
     <section className="py-16 md:py-24 px-4 md:px-6 bg-[var(--primary-blue)]/5 overflow-hidden" data-aos="fade-up">
@@ -2349,6 +2398,11 @@ const ScheduleCall = () => {
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 text-xs md:text-sm text-[var(--primary-blue)]/60 mb-8 pb-8 border-b border-[var(--primary-blue)]/10">
               <div className="flex items-center gap-2"><Clock size={16} /> 30 min appointments</div>
               <div className="flex items-center gap-2"><Video size={16} /> Google Meet video</div>
+            </div>
+
+            <div className="mb-8 p-4 bg-gray-50 rounded-xl space-y-4">
+                <input type="text" placeholder="Your Name" value={name} onChange={(e) => setName(e.target.value)} className="w-full p-3 rounded-lg border border-gray-200 outline-none focus:border-[var(--primary-blue)]" />
+                <input type="email" placeholder="Your Email" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full p-3 rounded-lg border border-gray-200 outline-none focus:border-[var(--primary-blue)]" />
             </div>
 
             <div className="mb-8">
@@ -2413,8 +2467,8 @@ const ScheduleCall = () => {
               </div>
             </div>
 
-            <button className="w-full bg-black text-white py-4 rounded-full font-medium hover:bg-gray-800 transition-all">
-              Confirm Appointment
+            <button onClick={handleConfirm} disabled={status === 'sending'} className="w-full bg-black text-white py-4 rounded-full font-medium hover:bg-gray-800 transition-all disabled:opacity-50">
+              {status === 'sending' ? 'Scheduling...' : 'Confirm Appointment'}
             </button>
           </div>
         </div>
