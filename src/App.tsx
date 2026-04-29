@@ -2176,14 +2176,14 @@ const ProjectsGrid = () => {
   const filters = ["All", "Telecom", "ICT", "Power", "Environmental", "Biomedical"];
   
   const projects = [
-    { id: "01", title: "Fiber Works", location: "Tanzania", tags: ["Telecom"], image: "/fu11.png", category: "Telecom" },
-    { id: "02", title: "Solar Energy Storage Installation", location: "Tanzania", tags: ["Power"], image: "/fu13.webp", category: "Power" },
-    { id: "03", title: "Overhead Pole Cable Installation", location: "Tanzania", tags: ["Telecom"], image: "/fu1.png", category: "Telecom" },
-    { id: "04", title: "CT-Scan Repair & Maintenance", location: "Tanzania", tags: ["Biomedical"], image: "/fu12.jpg", category: "Biomedical" },
-    { id: "05", title: "Telecom Tower Deployment", location: "Tanzania", tags: ["Telecom"], image: "/fu15.jfif", category: "Telecom" },
-    { id: "06", title: "Telecom Equipment Room Setup", location: "Tanzania", tags: ["Telecom"], image: "/fu14.webp", category: "Telecom" },
-    { id: "07", title: "Power Supply Unit Repair", location: "Tanzania", tags: ["Power"], image: "/BACKUP1.jpeg", category: "Power" },
-    { id: "08", title: "E-waste Management", location: "Tanzania", tags: ["Environmental"], image: "/e1.jpg", category: "Environmental" }
+    { id: "01", title: "Fiber Works", location: "Tanzania", tags: ["Telecom"], image: getCloudinaryUrl('v1777413775/fu11.png'), category: "Telecom" },
+    { id: "02", title: "Solar Energy Storage Installation", location: "Tanzania", tags: ["Power"], image: getCloudinaryUrl('v1777413780/fu13.webp'), category: "Power" },
+    { id: "03", title: "Overhead Pole Cable Installation", location: "Tanzania", tags: ["Telecom"], image: getCloudinaryUrl('v1777413784/fu1.png'), category: "Telecom" },
+    { id: "04", title: "CT-Scan Repair & Maintenance", location: "Tanzania", tags: ["Biomedical"], image: getCloudinaryUrl('v1777413783/fu12.jpg'), category: "Biomedical" },
+    { id: "05", title: "Telecom Tower Deployment", location: "Tanzania", tags: ["Telecom"], image: getCloudinaryUrl('v1777413784/fu15.jpg'), category: "Telecom" },
+    { id: "06", title: "Telecom Equipment Room Setup", location: "Tanzania", tags: ["Telecom"], image: getCloudinaryUrl('v1777413783/fu14.webp'), category: "Telecom" },
+    { id: "07", title: "Power Supply Unit Repair", location: "Tanzania", tags: ["Power"], image: getCloudinaryUrl('v1777413689/BACKUP1.jpg'), category: "Power" },
+    { id: "08", title: "E-waste Management", location: "Tanzania", tags: ["Environmental"], image: getCloudinaryUrl('v1777413690/e1.jpg'), category: "Environmental" }
   ];
 
   const filteredProjects = activeFilter === "All" 
