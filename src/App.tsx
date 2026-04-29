@@ -1,3 +1,4 @@
+import { getCloudinaryUrl } from './lib/cloudinary';
 import React, { useState, useEffect, useRef, FormEvent } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useLocation, useParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
@@ -122,12 +123,18 @@ const Navbar = ({ toggleMenu }: { toggleMenu: () => void }) => {
     >
       <Link to="/" className="flex items-center gap-2">
         <img 
-          src="/logo-main.png" 
+          src={getCloudinaryUrl('logo-main')} 
           alt="EES Ltd Icon" 
-          className="h-8 w-auto object-contain" 
+          className="hidden md:block h-8 w-auto object-contain" 
           referrerPolicy="no-referrer"
         />
-        <span className="font-semibold text-lg tracking-tighter text-[var(--primary-blue)] uppercase">ECO-ENGINEERING SOLUTIONS LTD</span>
+        <img 
+          src={getCloudinaryUrl('logo-footer2')} 
+          alt="EES Ltd Icon" 
+          className="md:hidden h-8 w-auto object-contain" 
+          referrerPolicy="no-referrer"
+        />
+        <span className="hidden md:block font-semibold text-lg tracking-tighter text-[var(--primary-blue)] uppercase">ECO-ENGINEERING SOLUTIONS LTD</span>
       </Link>
       
       <div className="hidden lg:flex items-center gap-8 text-[13px] font-medium text-gray-600">
@@ -157,7 +164,7 @@ const Navbar = ({ toggleMenu }: { toggleMenu: () => void }) => {
         >
           <Menu size={20} />
         </button>
-        <Link to="/contacts" className="bg-[var(--primary-orange)] text-white px-5 py-2 rounded-full text-[13px] font-medium hover:bg-[var(--primary-orange)]/90 transition-all flex items-center gap-2">
+        <Link to="/contacts" className="hidden md:flex bg-[var(--primary-orange)] text-white px-5 py-2 rounded-full text-[13px] font-medium hover:bg-[var(--primary-orange)]/90 transition-all items-center gap-2">
           Request a Quote
         </Link>
       </div>
@@ -211,7 +218,7 @@ const MenuOverlay = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void
         >
           <Link to="/" onClick={onClose} className="absolute top-6 left-6 flex items-center gap-2">
             <img 
-              src="/logo-main.png" 
+              src={getCloudinaryUrl('logo-main.png')} 
               alt="EES Ltd Icon" 
               className="h-8 w-auto object-contain" 
               referrerPolicy="no-referrer"
@@ -332,7 +339,7 @@ const MainFooter = () => {
         <div className="pt-10 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="flex items-center gap-2">
             <img 
-              src="/logo-footer.png" 
+              src={getCloudinaryUrl('logo-footer.png')} 
               alt="EES Ltd Icon" 
               className="h-8 w-auto object-contain brightness-0 invert" 
             />
@@ -376,14 +383,14 @@ const ProjectDetailPage = () => {
   const { id } = useParams();
   
   const projectData: Record<string, any> = {
-    "01": { title: "Fibre Works", desc: "On-site fibre cable inspection and pulling operations, carefully handling and routing fibre reels to ensure signal integrity during installation.", client: "[Client Name]", date: "2024", cat: "Telecom Services", assoc: "Eco-Engineering Solutions Ltd", loc: "Kanisani Road, Dar es Salaam", images: ["/fu11.png", "/fu11.png"] },
-    "02": { title: "Solar Energy Storage Installation", desc: "Installation of Freedom Won Lite LiFePO4 battery banks paired with Victron inverters and charge controllers, delivering a complete off-grid solar energy storage solution.", client: "[Client Name]", date: "2024", cat: "Power & Electrical Services", assoc: "Eco-Engineering Solutions Ltd", loc: "Dar es Salaam", images: ["/fu13.webp", "/fu13.webp"] },
-    "03": { title: "Overhead Pole Cable Intallation", desc: "Skilled technician climbing a utility pole to perform overhead cable installation, extending network connectivity to new areas of the city.", client: "[Client Name]", date: "2024", cat: "Telecom Services", assoc: "Eco-Engineering Solutions Ltd", loc: "Dar es Salaam", images: ["/fu1.png", "/fu1.png"] },
-    "04": { title: "CT-Scan Repair", desc: "Diagnosis and full repair of a CT-Scan unit, restoring critical imaging capability at a regional hospital.", client: "Regional Hospital", date: "2024", cat: "Biomedical Equipment Services", assoc: "Eco-Engineering Solutions Ltd", loc: "Dodoma", images: ["/fu12.jpg", "/fu12.jpg"] },
-    "05": { title: "Telecom Tower Deployment", desc: "Installation and commissioning of telecom towers to extend mobile and data network coverage across Tanzania.", client: "[Client Name]", date: "2024", cat: "Telecom Services", assoc: "Eco-Engineering Solutions Ltd", loc: "Tanzania", images: ["/fu15.jfif", "/fu15.jfif"] },
-    "06": { title: "Telecom Equipment Room Setup", desc: "Full rack installation and structured cabling of a telecom equipment room, integrating switches, routers, and patch panels for reliable network operation.", client: "[Client Name]", date: "2024", cat: "ICT Solutions", assoc: "Eco-Engineering Solutions Ltd", loc: "Tanzania", images: ["/fu14.webp", "/fu14.webp"] },
-    "07": { title: "Power Supply Unit Repair", desc: "Component-level diagnosis and repair of a power supply board, replacing faulty inductors and capacitors to restore full functionality.", client: "[Client Name]", date: "2024", cat: "Power & Electrical Services", assoc: "Eco-Engineering Solutions Ltd", loc: "Dar es Salaam", images: ["/BACKUP1.jpeg", "/BACKUP1.jpeg"] },
-    "08": { title: "E-waste Management", desc: "Responsible collection and processing of end-of-life electronic components and circuit boards, reducing environmental hazards through proper e-waste disposal and recycling.", client: "[Client Name]", date: "2024", cat: "Environmental Solutions", assoc: "Eco-Engineering Solutions Ltd", loc: "Tanzania", images: ["/e1.jpg", "/e1.jpg"] }
+    "01": { title: "Fibre Works", desc: "On-site fibre cable inspection and pulling operations, carefully handling and routing fibre reels to ensure signal integrity during installation.", client: "[Client Name]", date: "2024", cat: "Telecom Services", assoc: "Eco-Engineering Solutions Ltd", loc: "Kanisani Road, Dar es Salaam", images: [getCloudinaryUrl('fu11.png'), getCloudinaryUrl('fu2.png')] },
+    "02": { title: "Solar Energy Storage Installation", desc: "Installation of Freedom Won Lite LiFePO4 battery banks paired with Victron inverters and charge controllers, delivering a complete off-grid solar energy storage solution.", client: "[Client Name]", date: "2024", cat: "Power & Electrical Services", assoc: "Eco-Engineering Solutions Ltd", loc: "Dar es Salaam", images: [getCloudinaryUrl('fu13.webp'), getCloudinaryUrl('fu13.webp')] },
+    "03": { title: "Overhead Pole Cable Intallation", desc: "Skilled technician climbing a utility pole to perform overhead cable installation, extending network connectivity to new areas of the city.", client: "[Client Name]", date: "2024", cat: "Telecom Services", assoc: "Eco-Engineering Solutions Ltd", loc: "Dar es Salaam", images: [getCloudinaryUrl('fu1.png'), getCloudinaryUrl('fu3.png')] },
+    "04": { title: "CT-Scan Repair", desc: "Diagnosis and full repair of a CT-Scan unit, restoring critical imaging capability at a regional hospital.", client: "Regional Hospital", date: "2024", cat: "Biomedical Equipment Services", assoc: "Eco-Engineering Solutions Ltd", loc: "Dodoma", images: [getCloudinaryUrl('fu12.jpg'), getCloudinaryUrl('lab5.jpg')] },
+    "05": { title: "Telecom Tower Deployment", desc: "Installation and commissioning of telecom towers to extend mobile and data network coverage across Tanzania.", client: "[Client Name]", date: "2024", cat: "Telecom Services", assoc: "Eco-Engineering Solutions Ltd", loc: "Tanzania", images: [getCloudinaryUrl('fu15.jfif'), getCloudinaryUrl('fu15.jfif')] },
+    "06": { title: "Telecom Equipment Room Setup", desc: "Full rack installation and structured cabling of a telecom equipment room, integrating switches, routers, and patch panels for reliable network operation.", client: "[Client Name]", date: "2024", cat: "ICT Solutions", assoc: "Eco-Engineering Solutions Ltd", loc: "Tanzania", images: [getCloudinaryUrl('fu14.webp'), getCloudinaryUrl('fu14.webp')] },
+    "07": { title: "Power Supply Unit Repair", desc: "Component-level diagnosis and repair of a power supply board, replacing faulty inductors and capacitors to restore full functionality.", client: "[Client Name]", date: "2024", cat: "Power & Electrical Services", assoc: "Eco-Engineering Solutions Ltd", loc: "Dar es Salaam", images: [getCloudinaryUrl('BACKUP1.jpeg'), getCloudinaryUrl('BACKUP1.jpeg')] },
+    "08": { title: "E-waste Management", desc: "Responsible collection and processing of end-of-life electronic components and circuit boards, reducing environmental hazards through proper e-waste disposal and recycling.", client: "[Client Name]", date: "2024", cat: "Environmental Solutions", assoc: "Eco-Engineering Solutions Ltd", loc: "Tanzania", images: [getCloudinaryUrl('e1.jpg'), getCloudinaryUrl('e1.jpg')] }
   };
   
   const project = projectData[id as string] || projectData["01"];
@@ -430,8 +437,8 @@ const ProjectDetailPage = () => {
           
           <div className="relative" data-aos="fade-left" data-aos-delay="400">
             <div className="grid grid-cols-1 gap-6">
-                <div className="aspect-video bg-gray-200 rounded-3xl overflow-hidden"><img src={project.images[0]} className="w-full h-full object-cover" /></div>
-                <div className="aspect-video bg-gray-200 rounded-3xl overflow-hidden"><img src={project.images[1]} className="w-full h-full object-cover" /></div>
+                <div className="aspect-video bg-gray-200 rounded-3xl overflow-hidden"><img src={project.images[0]} className="w-full h-full object-cover" loading="lazy" /></div>
+                <div className="aspect-video bg-gray-200 rounded-3xl overflow-hidden"><img src={project.images[1]} className="w-full h-full object-cover" loading="lazy" /></div>
             </div>
           </div>
         </div>
@@ -449,11 +456,10 @@ const ProjectDetailPage = () => {
 const HomeHero = () => {
   return (
     <section className="pt-32 md:pt-52 pb-16 md:pb-24 px-6 text-center relative overflow-hidden" data-aos="fade-up">
-      <HeroBackground src="/t1.webp" alt="Home background" />
+      <HeroBackground src={getCloudinaryUrl('t1')} alt="Home background" />
       
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="flex justify-center mb-8 md:mb-12">
-          <div className="w-2 h-2 bg-[var(--primary-orange)] rounded-full"></div>
         </div>
         <motion.h1 
           initial={{ opacity: 0, y: 30 }}
@@ -536,9 +542,9 @@ const WhoWeAre = () => {
                 loop 
                 muted 
                 playsInline
-                preload="auto"
+                preload="metadata"
               >
-                <source src="/0411.mp4" type="video/mp4" />
+                <source src={getCloudinaryUrl('0411.mp4', true)} type="video/mp4" />
               </video>
               {/* Main Video */}
               <video 
@@ -547,9 +553,9 @@ const WhoWeAre = () => {
                 loop 
                 muted 
                 playsInline
-                preload="auto"
+                preload="metadata"
               >
-                <source src="/0411.mp4" type="video/mp4" />
+                <source src={getCloudinaryUrl('0411.mp4', true)} type="video/mp4" />
               </video>
               <div className="absolute inset-0 z-20 bg-black/10 group-hover:bg-black/20 transition-all"></div>
               <div className="absolute bottom-4 left-6 z-20 text-white text-sm font-medium">
@@ -558,7 +564,7 @@ const WhoWeAre = () => {
             </div>
           </motion.div>
           <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-            <h2 className="who-we-are-heading text-white">We are Tanzania's trusted engineering partner</h2>
+            <h2 className="text-xl md:text-3xl lg:text-[36px] font-medium leading-[1.2] mb-6 md:mb-8 text-white max-w-xl">We are Tanzania's trusted engineering partner</h2>
             <p className="text-white/70 text-[15px] leading-relaxed mb-6 font-normal">
               ECO-ENGINEERING SOLUTIONS LTD is a dynamic firm specializing in providing comprehensive Environmental, Electrical, Telecom and Information Communication Technology (ICT) solutions.
             </p>
@@ -620,7 +626,7 @@ const FeaturedWorks = () => {
       location: "Tanzania",
       desc: "On-site fibre cable inspection and pulling operations, carefully handling and routing fibre reels to ensure signal integrity during installation.",
       tags: ["Telecom", "Fiber Optic"],
-      image: "/fu11.png",
+      image: getCloudinaryUrl('fu11.png'),
       reverse: false
     },
     {
@@ -629,7 +635,7 @@ const FeaturedWorks = () => {
       location: "Tanzania",
       desc: "Installation of Freedom Won Lite LiFePO4 battery banks paired with Victron inverters and charge controllers, delivering a complete off-grid solar energy storage solution.",
       tags: ["Power", "Renewable"],
-      image: "/fu13.webp",
+      image: getCloudinaryUrl('fu13.webp'),
       reverse: true
     },
     {
@@ -638,7 +644,7 @@ const FeaturedWorks = () => {
       location: "Tanzania",
       desc: "Skilled technician climbing a utility pole to perform overhead cable installation, extending network connectivity to new areas of the city.",
       tags: ["Telecom", "Infra"],
-      image: "/fu1.png",
+      image: getCloudinaryUrl('fu1.png'),
       reverse: false
     },
     {
@@ -647,7 +653,7 @@ const FeaturedWorks = () => {
       location: "Tanzania",
       desc: "Diagnosis and full repair of a CT-Scan unit, restoring critical imaging capability at a regional hospital.",
       tags: ["Biomedical", "Repair"],
-      image: "/fu12.jpg",
+      image: getCloudinaryUrl('fu12.jpg'),
       reverse: true
     }
   ];
@@ -660,7 +666,7 @@ const FeaturedWorks = () => {
             <div className="w-1.5 h-1.5 bg-black rounded-full"></div>
             <span>Featured Works</span>
           </div>
-          <h2 className="featured-heading">
+          <h2 className="text-[20px] md:text-3xl lg:text-[36px] font-medium leading-[1.2] text-white">
             We engineer solutions but most importantly we solve problems.
           </h2>
         </div>
@@ -937,7 +943,7 @@ const HomeServices = () => {
             <div className="w-1.5 h-1.5 bg-black rounded-full"></div>
             <span>Our services</span>
           </div>
-          <h2 className="services-heading">We engineer solutions but most importantly we solve problems.</h2>
+          <h2 className="text-[20px] md:text-3xl lg:text-[36px] font-medium leading-[1.2] text-[var(--primary-blue)]">We engineer solutions but most importantly we solve problems.</h2>
         </div>
         
         <div className="services-list">
@@ -1035,28 +1041,28 @@ const HowWeBuildSolutions = () => {
       title: "We listen and understand your challenge",
       desc: "Consultation shapes what comes next.",
       icon: <Package size={24} />,
-      image: "/li1.jpg",
+      image: getCloudinaryUrl('li1.jpg'),
       linkText: "Next"
     },
     {
       title: "We engineer solutions built for you",
       desc: "Design accounts for your terrain and requirements.",
       icon: <Package size={24} />,
-      image: "/li2.jfif",
+      image: getCloudinaryUrl('li2.jpg'),
       linkText: "Next"
     },
     {
       title: "We install with precision and care",
       desc: "Implementation happens on schedule and on budget.",
       icon: <Package size={24} />,
-      image: "/li3.jpg",
+      image: getCloudinaryUrl('li3.jpg'),
       linkText: "Next"
     },
     {
       title: "We stand behind what we build",
       desc: "Support continues long after the work is done.",
       icon: <Package size={24} />,
-      image: "/li5.jpg",
+      image: getCloudinaryUrl('li5.jpg'),
       linkText: "Done"
     }
   ];
@@ -1069,7 +1075,7 @@ const HowWeBuildSolutions = () => {
             <div className="w-1.5 h-1.5 bg-[var(--primary-orange)] rounded-full"></div>
             <span className="text-[11px] font-bold uppercase tracking-widest text-white/60">Process</span>
           </div>
-          <h2 className="text-4xl md:text-[56px] font-medium tracking-tight mb-6 leading-tight text-white">How we build solutions</h2>
+          <h2 className="text-[20px] sm:text-4xl md:text-[56px] font-medium tracking-tight mb-6 leading-tight text-white">How we build solutions</h2>
           <p className="text-white/70 text-lg font-normal">From first conversation to final handoff</p>
         </div>
 
@@ -1230,11 +1236,11 @@ const ContactForm = () => {
               
               <div>
                 <label className="text-[10px] font-bold uppercase tracking-widest text-white/40 mb-4 md:mb-5 block">What services are you interested in?</label>
-                <div className="flex flex-wrap gap-2 md:gap-2.5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 md:gap-3">
                   {["Telecom Services", "ICT Solutions", "Power & Electrical", "Environmental Solutions", "Biomedical Equipment"].map((tag, i) => (
                     <label key={i} className="cursor-pointer">
                       <input type="checkbox" name="services" value={tag} className="sr-only peer" />
-                      <span className="px-4 md:px-5 py-2 rounded-full border border-white/20 text-[10px] md:text-[11px] font-medium transition-all peer-checked:bg-[var(--primary-orange)] peer-checked:text-white hover:bg-[var(--primary-orange)] hover:text-white bg-transparent text-white">{tag}</span>
+                      <span className="block text-center px-4 md:px-5 py-2 rounded-full border border-white/20 text-[10px] md:text-[11px] font-medium transition-all peer-checked:bg-[var(--primary-orange)] peer-checked:text-white hover:bg-[var(--primary-orange)] hover:text-white bg-transparent text-white">{tag}</span>
                     </label>
                   ))}
                 </div>
@@ -1242,11 +1248,11 @@ const ContactForm = () => {
 
               <div>
                 <label className="text-[10px] font-bold uppercase tracking-widest text-white/40 mb-4 md:mb-5 block">Project Timeline</label>
-                <div className="flex gap-2 md:gap-3">
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 md:gap-3">
                   {["1-3 Months", "3-6 Months", "6-12 Months", "12+ Months"].map((time, i) => (
                       <label key={i} className="flex-1 cursor-pointer">
                         <input type="radio" name="timeline" value={time} className="sr-only peer" />
-                        <div className="text-center py-2 rounded-full border border-white/20 text-[10px] md:text-[11px] font-medium transition-all peer-checked:bg-[var(--primary-orange)] peer-checked:text-white hover:bg-[var(--primary-orange)] hover:text-white bg-transparent text-white">{time}</div>
+                        <div className="text-center py-2 px-1 rounded-full border border-white/20 text-[10px] md:text-[11px] font-medium transition-all peer-checked:bg-[var(--primary-orange)] peer-checked:text-white hover:bg-[var(--primary-orange)] hover:text-white bg-transparent text-white">{time}</div>
                       </label>
                   ))}
                 </div>
@@ -1274,7 +1280,7 @@ const ContactForm = () => {
 const ServicesHero = () => {
   return (
     <section className="pt-40 md:pt-60 pb-24 md:pb-40 px-6 text-center relative overflow-hidden" data-aos="fade-up">
-      <HeroBackground src="/ugu.webp" alt="Services background" />
+      <HeroBackground src={getCloudinaryUrl('ugu.webp')} alt="Services background" />
       
       <div className="max-w-7xl mx-auto relative z-10">
         <motion.div
@@ -1367,7 +1373,7 @@ const CoreOfferings = () => {
           <div className="text-[12px] md:text-[13px] text-[#333] font-normal uppercase tracking-widest mb-4 md:mb-0">
             • Our Services
           </div>
-          <h2 className="text-2xl md:text-[28px] font-bold leading-[1.3] max-w-[520px] text-black">Our Core Engineering Services</h2>
+          <h2 className="text-[20px] md:text-[28px] font-bold leading-[1.3] max-w-[520px] text-black">Our Core Engineering Services</h2>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
@@ -1424,7 +1430,7 @@ const CoreOfferings = () => {
 };
 
 const LogoTicker = () => {
-  const images = ["/1.png", "/2.png", "/3.png", "/4.png", "/5.png", "/6.png", "/7.png", "/8.png"];
+  const images = [getCloudinaryUrl('1.png'), getCloudinaryUrl('2.png'), getCloudinaryUrl('3.png'), getCloudinaryUrl('4.png'), getCloudinaryUrl('5.png'), getCloudinaryUrl('6.png'), getCloudinaryUrl('7.png'), getCloudinaryUrl('8.png')];
 
   return (
     <section className="py-20 bg-white overflow-hidden" data-aos="fade-up">
@@ -1458,42 +1464,42 @@ const FeaturedProjectsCarousel = () => {
       title: "Fiber Works",
       year: "2024",
       tags: ["Telecom", "Infra"],
-      image: "/fu11.png"
+      image: getCloudinaryUrl('fu11.png')
     },
     {
       id: "02",
       title: "Solar Energy Storage Installation",
       year: "2024",
       tags: ["Power", "Renewable"],
-      image: "/fu13.webp"
+      image: getCloudinaryUrl('fu13.webp')
     },
     {
       id: "03",
       title: "Overhead Pole Cable Installation",
       year: "2024",
       tags: ["Telecom", "Splicing"],
-      image: "/fu1.png"
+      image: getCloudinaryUrl('fu1.png')
     },
     {
       id: "04",
       title: "CT-Scan Repair & Maintenance",
       year: "2023",
       tags: ["Biomedical", "Repair"],
-      image: "/fu12.jpg"
+      image: getCloudinaryUrl('fu12.jpg')
     },
     {
       id: "05",
       title: "Telecom Tower Deployment",
       year: "2024",
       tags: ["Telecom", "Infrastructure"],
-      image: "/fu15.jfif"
+      image: getCloudinaryUrl('fu15.jfif')
     },
     {
       id: "06",
       title: "Telecom Equipment Room Setup",
       year: "2024",
       tags: ["Telecom", "ICT"],
-      image: "/fu14.webp"
+      image: getCloudinaryUrl('fu14.webp')
     }
   ];
 
@@ -1520,7 +1526,7 @@ const FeaturedProjectsCarousel = () => {
           <div className="text-[12px] md:text-[14px] text-[var(--primary-orange)] font-normal uppercase tracking-widest mb-4 md:mb-0">
             • Our Works
           </div>
-          <h2 className="text-3xl md:text-[54px] font-medium leading-[1.1] max-w-2xl md:text-right text-white">Check Our Featured Projects</h2>
+          <h2 className="text-[20px] md:text-[54px] font-medium leading-[1.1] max-w-2xl md:text-right text-white">Check Our Featured Projects</h2>
         </div>
 
         <div 
@@ -1531,7 +1537,7 @@ const FeaturedProjectsCarousel = () => {
           {projects.map((project, i) => (
             <div key={i} className="min-w-[85vw] md:min-w-[800px] snap-start" data-aos="fade-up" data-aos-delay={i * 100}>
             <div className="rounded-[2rem] md:rounded-[3rem] overflow-hidden aspect-[16/10] bg-[#f5f5f5] p-6 md:p-12 mb-6 md:mb-8 group cursor-pointer shadow-xl border border-gray-200/50">
-                <img src={project.image} alt={project.title} className="w-full h-full object-cover rounded-2xl md:rounded-[2rem] group-hover:scale-105 transition-transform duration-700 shadow-2xl" />
+                <img src={project.image} alt={project.title} className="w-full h-full object-cover rounded-2xl md:rounded-[2rem] group-hover:scale-105 transition-transform duration-700 shadow-2xl" loading="lazy" />
               </div>
               <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 md:gap-6 px-2">
                 <h3 className="text-2xl md:text-[36px] font-medium text-white">
@@ -1614,7 +1620,7 @@ const ExpertiseSection = () => {
             <div className="flex items-center gap-2 text-[13px] text-[var(--primary-orange)] font-medium uppercase tracking-widest mb-8 md:mb-12">
               <span className="text-[var(--primary-orange)]">•</span> Experise
             </div>
-            <h2 className="text-3xl sm:text-4xl md:text-[52px] font-medium leading-[1.1] mb-8 md:mb-10 text-[var(--primary-blue)] max-w-xl">We solve real engineering problems</h2>
+            <h2 className="text-[20px] sm:text-4xl md:text-[52px] font-medium leading-[1.1] mb-8 md:mb-10 text-[var(--primary-blue)] max-w-xl">We solve real engineering problems</h2>
             <p className="text-[var(--primary-blue)]/60 text-base md:text-lg leading-relaxed mb-8 md:mb-12 max-w-lg font-normal">
               From fiber optic networks to biomedical equipment — we deliver complete engineering solutions across Tanzania.
             </p>
@@ -1624,7 +1630,7 @@ const ExpertiseSection = () => {
           </div>
           <div className="relative">
             <div className="rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden aspect-video bg-[var(--primary-blue)]/5 shadow-2xl">
-              <img src="/f14.png" className="w-full h-full object-cover" />
+              <img src={getCloudinaryUrl('f14.png')} className="w-full h-full object-cover" />
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="bg-white/90 backdrop-blur-sm p-8 rounded-2xl shadow-xl max-w-[280px] text-center">
                   <h4 className="text-lg font-medium mb-2 text-[var(--primary-blue)]">Project Excellence</h4>
@@ -1657,7 +1663,7 @@ const StatsSection = () => {
             <div className="flex items-center gap-2 text-[13px] text-[var(--primary-orange)] font-medium uppercase tracking-widest mb-8 md:mb-12">
               <span className="text-[var(--primary-orange)]">•</span> What makes us different?
             </div>
-            <h2 className="text-3xl sm:text-4xl md:text-[64px] font-medium leading-[1] mb-8 md:mb-10 text-white">EES Ltd At A Glance</h2>
+            <h2 className="text-[20px] sm:text-4xl md:text-[64px] font-medium leading-[1] mb-8 md:mb-10 text-white">EES Ltd At A Glance</h2>
             <p className="text-white/70 text-base md:text-lg leading-relaxed mb-8 md:mb-12 max-w-md font-normal">
               Engineering is more than just technical specs—it's about delivering reliable solutions that power progress.
             </p>
@@ -1709,7 +1715,7 @@ const FAQSection = () => {
         <div className="flex items-center gap-2 text-[13px] text-[var(--primary-orange)] font-medium uppercase tracking-widest mb-8 md:mb-12">
           <span className="text-[var(--primary-orange)]">•</span> FAQ
         </div>
-        <h2 className="text-3xl sm:text-4xl md:text-[54px] font-medium leading-[1.1] mb-12 md:mb-20 text-[var(--primary-blue)]">Frequently Asked Questions</h2>
+        <h2 className="text-[20px] sm:text-4xl md:text-[54px] font-medium leading-[1.1] mb-12 md:mb-20 text-[var(--primary-blue)]">Frequently Asked Questions</h2>
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-4 lg:gap-y-0">
           {faqs.map((faq, i) => (
@@ -1755,7 +1761,7 @@ const CTASection = () => {
             <div className="flex items-center gap-2 text-[13px] text-[var(--primary-orange)] font-medium uppercase tracking-widest mb-8 md:mb-12">
               <span className="text-[var(--primary-orange)]">•</span> Interested?
             </div>
-            <h2 className="text-3xl sm:text-4xl md:text-[64px] font-medium leading-[1] mb-8 md:mb-10 text-[var(--primary-blue)]">Let's build the future together!</h2>
+            <h2 className="text-[20px] sm:text-4xl md:text-[64px] font-medium leading-[1] mb-8 md:mb-10 text-[var(--primary-blue)]">Let's build the future together!</h2>
           </div>
           <div>
             <p className="text-[var(--primary-blue)]/60 text-lg md:text-xl leading-relaxed mb-8 md:mb-12 font-normal">
@@ -1783,7 +1789,7 @@ const CTASection = () => {
 const AboutHero = () => {
   return (
     <section className="pt-32 md:pt-48 pb-16 md:pb-24 px-4 md:px-6 text-center relative overflow-hidden" data-aos="fade-up">
-      <HeroBackground src="/Ubuntu-Towers-jpg-webp.webp" alt="About background" />
+      <HeroBackground src={getCloudinaryUrl('Ubuntu-Towers-jpg-webp.webp')} alt="About background" />
       
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="max-w-4xl mx-auto">
@@ -1838,14 +1844,14 @@ const WhoWeAreAbout = () => {
             data-aos="fade-up"
           >
             <div className="rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden aspect-[4/5] mb-6 md:mb-8 bg-gray-100">
-              <img src="/ceo.png" alt="CEO & Founder" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+              <img src={getCloudinaryUrl('ceo.png')} alt="CEO & Founder" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
             </div>
             <div className="flex items-center justify-between">
               <div>
-                <h3 className="text-2xl font-medium text-[var(--primary-blue)] mb-1">Eng. Kalebo Nashon Mashinga</h3>
+                <h3 className="text-sm md:text-2xl font-medium text-[var(--primary-blue)] mb-1">Eng. Kalebo Nashon Mashinga</h3>
                 <p className="text-[var(--primary-blue)]/50 text-sm">CEO & Founder</p>
               </div>
-              <a href="#" className="w-10 h-10 rounded-full bg-[var(--primary-blue)] flex items-center justify-center text-white hover:scale-110 transition-transform">
+              <a href="#" className="hidden md:flex w-10 h-10 rounded-full bg-[var(--primary-blue)] items-center justify-center text-white hover:scale-110 transition-transform">
                 <Linkedin size={18} />
               </a>
             </div>
@@ -1884,7 +1890,7 @@ const AboutStudio = () => {
       <div className="max-w-7xl mx-auto">
         <div className="bg-[var(--primary-blue)]/5 rounded-[2rem] md:rounded-[3rem] p-8 md:p-20 grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16 items-center" data-aos="fade-up" data-aos-delay="100">
           <div>
-            <h2 className="text-3xl sm:text-4xl md:text-[42px] font-medium leading-[1.2] mb-8 md:mb-10 text-[var(--primary-blue)] max-w-xl">We are Tanzania's premier engineering solutions firm</h2>
+            <h2 className="text-xl sm:text-4xl md:text-[42px] font-medium leading-[1.2] mb-8 md:mb-10 text-[var(--primary-blue)] max-w-xl" data-aos="fade-up" data-aos-delay="50">We are Tanzania's premier engineering solutions firm</h2>
             <p className="text-[var(--primary-blue)]/60 text-base md:text-lg leading-relaxed mb-8 md:mb-12 font-normal">
               ECO-ENGINEERING SOLUTIONS LTD is a dynamic firm specializing in providing comprehensive Environmental, Electrical, Telecom and ICT solutions. Our commitment to excellence, reliability, and technological expertise ensures cutting-edge solutions that empower businesses and communities alike.
             </p>
@@ -1894,7 +1900,7 @@ const AboutStudio = () => {
           </div>
           <div className="rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden aspect-video bg-[var(--primary-blue)] relative group">
             <video 
-              src="/0411.mp4" 
+              src={getCloudinaryUrl('0411.mp4', true)} 
               className="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700"
               autoPlay
               loop
@@ -2014,7 +2020,7 @@ const OurMission = () => {
           <div className="flex items-center gap-2 text-[14px] text-[var(--primary-orange)] font-normal uppercase tracking-widest">
             • Our Mission
           </div>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-medium leading-tight max-w-2xl text-left md:text-right text-[var(--primary-blue)]">
+          <h2 className="text-[20px] sm:text-3xl md:text-4xl font-medium leading-tight max-w-2xl text-left md:text-right text-[var(--primary-blue)]">
             To deliver engineering solutions that enhance connectivity, efficiency and safety.
           </h2>
         </div>
@@ -2022,7 +2028,7 @@ const OurMission = () => {
         <div className="bg-[var(--primary-blue)]/5 rounded-[2rem] md:rounded-[3rem] p-8 md:p-20 shadow-sm">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-20">
             <div>
-              <h2 className="text-3xl sm:text-4xl md:text-[54px] font-medium leading-[1.1] mb-8 md:mb-10 text-[var(--primary-blue)]">Our values and commitments</h2>
+              <h2 className="text-[20px] sm:text-3xl md:text-[54px] font-medium leading-[1.1] mb-8 md:mb-10 text-[var(--primary-blue)]">Our values and commitments</h2>
             </div>
             <div className="space-y-12 md:space-y-16">
               {values.map((value, i) => (
@@ -2080,7 +2086,7 @@ const CreativeTeamGrid = () => {
         </div>
         
         <div className="relative z-10">
-          <h2 className="text-3xl sm:text-4xl md:text-[64px] font-medium leading-[1.1] mb-6 md:mb-8 text-[var(--primary-blue)]">Our Engineering Team</h2>
+          <h2 className="text-[20px] sm:text-4xl md:text-[64px] font-medium leading-[1.1] mb-6 md:mb-8 text-[var(--primary-blue)]">Our Engineering Team</h2>
           <p className="text-[var(--primary-blue)]/60 text-base md:text-lg max-w-xl mx-auto mb-8 md:mb-12 font-normal">
             Skilled Artisans, Technicians and Engineers united by a commitment to excellence.
           </p>
@@ -2102,7 +2108,7 @@ const JoinOurTeam = () => {
             <div className="flex items-center gap-2 text-[14px] text-[var(--primary-orange)] font-normal uppercase tracking-widest mb-8 md:mb-12">
               • Careers
             </div>
-            <h2 className="text-3xl sm:text-4xl md:text-[64px] font-medium leading-[1.1] mb-6 md:mb-8 text-[var(--primary-blue)]">Join Our Team</h2>
+            <h2 className="text-[20px] sm:text-4xl md:text-[64px] font-medium leading-[1.1] mb-6 md:mb-8 text-[var(--primary-blue)]">Join Our Team</h2>
             <p className="text-[var(--primary-blue)]/60 text-base md:text-lg leading-relaxed mb-8 md:mb-12 font-normal">
               We are always looking for skilled engineers and technicians to join our growing team in Dar es Salaam, Tanzania.
             </p>
@@ -2111,7 +2117,7 @@ const JoinOurTeam = () => {
             </Link>
           </div>
           <div className="rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden aspect-square bg-[var(--primary-blue)] relative group shadow-2xl">
-            <img src="/f13.jpeg" alt="Careers" className="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700" />
+            <img src={getCloudinaryUrl('f13.jpeg')} alt="Careers" className="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700" />
             <div className="absolute inset-0 flex items-center justify-center p-8">
               <div className="w-full h-full border border-white/20 rounded-[2rem] flex items-center justify-center">
                 <div className="text-center">
@@ -2132,7 +2138,7 @@ const JoinOurTeam = () => {
 const ProjectsHero = () => {
   return (
     <section className="pt-32 md:pt-48 pb-16 md:pb-24 px-4 md:px-6 text-center relative overflow-hidden" data-aos="fade-up">
-      <HeroBackground src="/proje.jpg" alt="Projects background" />
+      <HeroBackground src={getCloudinaryUrl('proje.jpg')} alt="Projects background" />
       
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="max-w-4xl mx-auto" data-aos="fade-up">
@@ -2230,8 +2236,8 @@ const ProjectsGrid = () => {
               transition={{ duration: 0.8, delay: i * 0.1 }}
               className="group"
             >
-              <Link to={`/projects/${project.id}`} className="block rounded-3xl overflow-hidden bg-gray-100 p-4 md:p-6 mb-6 cursor-pointer relative shadow-sm border border-gray-100">
-                <div className="rounded-2xl overflow-hidden aspect-[16/10]">
+              <Link to={`/projects/${project.id}`} className="block rounded-[2rem] overflow-hidden bg-[#f5f5f5] p-5 md:p-8 mb-6 cursor-pointer relative shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+                <div className="rounded-2xl overflow-hidden aspect-[16/10] shadow-md">
                   <img 
                     src={project.image} 
                     alt={project.title} 
@@ -2279,7 +2285,7 @@ const ProjectsGrid = () => {
 const ContactsHero = () => {
   return (
     <section className="pt-32 md:pt-48 pb-16 md:pb-24 px-4 md:px-6 text-center relative overflow-hidden" data-aos="fade-up">
-      <HeroBackground src="/f18.png" alt="Contacts background" />
+      <HeroBackground src={getCloudinaryUrl('f18.png')} alt="Contacts background" />
       
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="max-w-4xl mx-auto" data-aos="fade-up">
@@ -2327,7 +2333,7 @@ const ScheduleCall = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16 items-start">
           <div>
             <h2 className="text-3xl sm:text-4xl md:text-[64px] font-medium leading-[1.1] mb-8 flex items-center flex-wrap gap-x-4 text-[var(--primary-blue)]">
-              Want to <span className="inline-flex items-center justify-center w-12 h-12 md:w-16 md:h-16 rounded-full bg-[var(--primary-blue)]/20 overflow-hidden"><img src="/ceo.png" alt="Person" className="w-full h-full object-cover" /></span> discuss the project?
+              Want to <span className="inline-flex items-center justify-center w-12 h-12 md:w-16 md:h-16 rounded-full bg-[var(--primary-blue)]/20 overflow-hidden"><img src={getCloudinaryUrl('ceo.png')} alt="Person" className="w-full h-full object-cover" /></span> discuss the project?
             </h2>
           </div>
 
