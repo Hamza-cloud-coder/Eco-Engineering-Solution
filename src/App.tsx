@@ -387,9 +387,9 @@ const ProjectDetailPage = () => {
     "02": { title: "Solar Energy Storage Installation", desc: "Installation of Freedom Won Lite LiFePO4 battery banks paired with Victron inverters and charge controllers, delivering a complete off-grid solar energy storage solution.", client: "[Client Name]", date: "2024", cat: "Power & Electrical Services", assoc: "Eco-Engineering Solutions Ltd", loc: "Dar es Salaam", images: [getCloudinaryUrl('fu13.webp'), getCloudinaryUrl('fu13.webp')] },
     "03": { title: "Overhead Pole Cable Intallation", desc: "Skilled technician climbing a utility pole to perform overhead cable installation, extending network connectivity to new areas of the city.", client: "[Client Name]", date: "2024", cat: "Telecom Services", assoc: "Eco-Engineering Solutions Ltd", loc: "Dar es Salaam", images: [getCloudinaryUrl('fu1.png'), getCloudinaryUrl('fu3.png')] },
     "04": { title: "CT-Scan Repair", desc: "Diagnosis and full repair of a CT-Scan unit, restoring critical imaging capability at a regional hospital.", client: "Regional Hospital", date: "2024", cat: "Biomedical Equipment Services", assoc: "Eco-Engineering Solutions Ltd", loc: "Dodoma", images: [getCloudinaryUrl('fu12.jpg'), getCloudinaryUrl('lab5.jpg')] },
-    "05": { title: "Telecom Tower Deployment", desc: "Installation and commissioning of telecom towers to extend mobile and data network coverage across Tanzania.", client: "[Client Name]", date: "2024", cat: "Telecom Services", assoc: "Eco-Engineering Solutions Ltd", loc: "Tanzania", images: [getCloudinaryUrl('fu15.jfif'), getCloudinaryUrl('fu15.jfif')] },
+    "05": { title: "Telecom Tower Deployment", desc: "Installation and commissioning of telecom towers to extend mobile and data network coverage across Tanzania.", client: "[Client Name]", date: "2024", cat: "Telecom Services", assoc: "Eco-Engineering Solutions Ltd", loc: "Tanzania", images: [getCloudinaryUrl('fu15.jpg'), getCloudinaryUrl('fu15.jpg')] },
     "06": { title: "Telecom Equipment Room Setup", desc: "Full rack installation and structured cabling of a telecom equipment room, integrating switches, routers, and patch panels for reliable network operation.", client: "[Client Name]", date: "2024", cat: "ICT Solutions", assoc: "Eco-Engineering Solutions Ltd", loc: "Tanzania", images: [getCloudinaryUrl('fu14.webp'), getCloudinaryUrl('fu14.webp')] },
-    "07": { title: "Power Supply Unit Repair", desc: "Component-level diagnosis and repair of a power supply board, replacing faulty inductors and capacitors to restore full functionality.", client: "[Client Name]", date: "2024", cat: "Power & Electrical Services", assoc: "Eco-Engineering Solutions Ltd", loc: "Dar es Salaam", images: [getCloudinaryUrl('BACKUP1.jpeg'), getCloudinaryUrl('BACKUP1.jpeg')] },
+    "07": { title: "Power Supply Unit Repair", desc: "Component-level diagnosis and repair of a power supply board, replacing faulty inductors and capacitors to restore full functionality.", client: "[Client Name]", date: "2024", cat: "Power & Electrical Services", assoc: "Eco-Engineering Solutions Ltd", loc: "Dar es Salaam", images: [getCloudinaryUrl('BACKUP1.jpg'), getCloudinaryUrl('BACKUP1.jpg')] },
     "08": { title: "E-waste Management", desc: "Responsible collection and processing of end-of-life electronic components and circuit boards, reducing environmental hazards through proper e-waste disposal and recycling.", client: "[Client Name]", date: "2024", cat: "Environmental Solutions", assoc: "Eco-Engineering Solutions Ltd", loc: "Tanzania", images: [getCloudinaryUrl('e1.jpg'), getCloudinaryUrl('e1.jpg')] }
   };
   
@@ -1492,7 +1492,7 @@ const FeaturedProjectsCarousel = () => {
       title: "Telecom Tower Deployment",
       year: "2024",
       tags: ["Telecom", "Infrastructure"],
-      image: getCloudinaryUrl('fu15.jfif')
+      image: getCloudinaryUrl('fu15.jpg')
     },
     {
       id: "06",
