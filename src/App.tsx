@@ -1844,7 +1844,7 @@ const WhoWeAreAbout = () => {
             data-aos="fade-up"
           >
             <div className="rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden aspect-[4/5] mb-6 md:mb-8 bg-gray-100">
-              <img src={getCloudinaryUrl('Public/ceo.png')} alt="CEO & Founder" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+              <img src={getCloudinaryUrl('ceo.png')} alt="CEO & Founder" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
             </div>
             <div className="flex items-center justify-between">
               <div>
