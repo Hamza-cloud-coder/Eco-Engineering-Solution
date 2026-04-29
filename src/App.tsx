@@ -1048,7 +1048,7 @@ const HowWeBuildSolutions = () => {
       title: "We engineer solutions built for you",
       desc: "Design accounts for your terrain and requirements.",
       icon: <Package size={24} />,
-      image: getCloudinaryUrl('li2.jpg'),
+      image: getCloudinaryUrl('v1777413792/li2.jpg'),
       linkText: "Next"
     },
     {
